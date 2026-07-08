@@ -205,9 +205,77 @@ export const about = {
   ],
 }
 
+// Portfolio / project showcase.
+// SCAFFOLD: placeholder projects. Replace titles, details, and add real
+// photos (see Portfolio.jsx / Placeholder usage) once available.
+export const portfolio = {
+  eyebrow: 'Our Work',
+  heading: 'Projects that speak for themselves',
+  subtitle:
+    'A look at the range of work we deliver across South Florida — from custom luxury homes to commercial builds and restorations.',
+  categories: ['All', 'Luxury Homes', 'Commercial', 'Roofing', 'Renovation', 'Building Envelope'],
+  projects: [
+    {
+      id: 'coastal-residence',
+      title: 'Coastal Modern Residence',
+      category: 'Luxury Homes',
+      location: 'Coral Gables, FL',
+      year: '2024',
+      description:
+        'Ground-up custom build featuring open living spaces, impact glazing, and a resort-style exterior.',
+    },
+    {
+      id: 'office-buildout',
+      title: 'Corporate Office Build-Out',
+      category: 'Commercial',
+      location: 'Doral, FL',
+      year: '2023',
+      description:
+        'Full interior build-out of a multi-floor commercial office, delivered on an accelerated schedule.',
+    },
+    {
+      id: 'roof-replacement',
+      title: 'Tile Roof Replacement',
+      category: 'Roofing',
+      location: 'Kendall, FL',
+      year: '2024',
+      description:
+        'Complete tear-off and reconstruction of a residential tile roof, engineered for hurricane resistance.',
+    },
+    {
+      id: 'kitchen-renovation',
+      title: 'Whole-Home Renovation',
+      category: 'Renovation',
+      location: 'Pinecrest, FL',
+      year: '2023',
+      description:
+        'Interior renovation modernizing kitchen, baths, and living areas while preserving original character.',
+    },
+    {
+      id: 'glazing-facade',
+      title: 'Exterior Glazing & Facade',
+      category: 'Building Envelope',
+      location: 'Brickell, Miami, FL',
+      year: '2022',
+      description:
+        'Installation of exterior glazing systems, railings, and composite panels on a mid-rise building.',
+    },
+    {
+      id: 'retail-center',
+      title: 'Mixed-Use Retail Center',
+      category: 'Commercial',
+      location: 'Miami, FL',
+      year: '2022',
+      description:
+        'Construction management for a mixed-use retail and dining center from permitting through delivery.',
+    },
+  ],
+}
+
 export const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Services', to: '/services' },
+  { label: 'Portfolio', to: '/portfolio' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
 ]
