@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { Send, ChevronDown } from 'lucide-react'
+import { useLang } from '../i18n/LanguageContext'
 
 // NOTE: This form is a styled UI placeholder for Phase 1 — it does not submit.
 // Wiring to an email/backend service is planned for a later phase.
 export default function ContactForm() {
+  const { t } = useLang()
+  const f = t.form
   const [service, setService] = useState('')
 
   const handleSubmit = (e) => {
@@ -16,31 +19,31 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm sm:p-8">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="mb-1.5 block text-sm font-semibold text-navy-800">
-            Full name
+            {f.fullName}
           </label>
-          <input id="name" name="name" type="text" placeholder="Jane Doe" className={fieldClass} />
+          <input id="name" name="name" type="text" placeholder={f.fullNamePlaceholder} className={fieldClass} />
         </div>
         <div>
           <label htmlFor="phone" className="mb-1.5 block text-sm font-semibold text-navy-800">
-            Phone
+            {f.phone}
           </label>
-          <input id="phone" name="phone" type="tel" placeholder="(305) 000-0000" className={fieldClass} />
+          <input id="phone" name="phone" type="tel" placeholder={f.phonePlaceholder} className={fieldClass} />
         </div>
       </div>
 
       <div className="mt-4">
         <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-navy-800">
-          Email
+          {f.email}
         </label>
-        <input id="email" name="email" type="email" placeholder="you@email.com" className={fieldClass} />
+        <input id="email" name="email" type="email" placeholder={f.emailPlaceholder} className={fieldClass} />
       </div>
 
       <div className="mt-4">
         <label htmlFor="service" className="mb-1.5 block text-sm font-semibold text-navy-800">
-          Service of interest
+          {f.service}
         </label>
         <div className="relative">
           <select
@@ -53,14 +56,11 @@ export default function ContactForm() {
             }`}
           >
             <option value="" disabled>
-              Select a service
+              {f.selectService}
             </option>
-            <option>General Construction</option>
-            <option>Building Envelope</option>
-            <option>Roofing</option>
-            <option>Remodeling &amp; Restoration</option>
-            <option>Consulting Engineering</option>
-            <option>Other</option>
+            {f.serviceOptions.map((opt) => (
+              <option key={opt}>{opt}</option>
+            ))}
           </select>
           <ChevronDown
             className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400"
@@ -71,24 +71,22 @@ export default function ContactForm() {
 
       <div className="mt-4">
         <label htmlFor="message" className="mb-1.5 block text-sm font-semibold text-navy-800">
-          Project details
+          {f.projectDetails}
         </label>
         <textarea
           id="message"
           name="message"
           rows={5}
-          placeholder="Tell us about your project, timeline, and location…"
+          placeholder={f.projectPlaceholder}
           className={fieldClass}
         />
       </div>
 
       <button type="submit" className="btn-primary mt-6 w-full sm:w-auto">
         <Send className="h-4 w-4" />
-        Send Message
+        {f.send}
       </button>
-      <p className="mt-3 text-xs text-navy-400">
-        Prefer to talk now? Call us — we respond quickly to every inquiry.
-      </p>
+      <p className="mt-3 text-xs text-navy-400">{f.callNote}</p>
     </form>
   )
 }

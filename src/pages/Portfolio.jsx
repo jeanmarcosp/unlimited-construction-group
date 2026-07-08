@@ -1,14 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PageHeader from '../components/PageHeader'
 import ProjectCard from '../components/ProjectCard'
 import CTASection from '../components/CTASection'
-import { portfolio } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function Portfolio() {
-  const [active, setActive] = useState('All')
+  const { t } = useLang()
+  const portfolio = t.portfolio
+  const allLabel = portfolio.categories[0]
+  const [active, setActive] = useState(allLabel)
+
+  // Reset the filter when the language changes so the active category
+  // always matches the current language's category labels.
+  useEffect(() => {
+    setActive(portfolio.categories[0])
+  }, [portfolio])
 
   const projects =
-    active === 'All'
+    active === portfolio.categories[0]
       ? portfolio.projects
       : portfolio.projects.filter((p) => p.category === active)
 
@@ -43,14 +52,12 @@ export default function Portfolio() {
           {/* Project grid */}
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} photoLabel={portfolio.photoLabel} />
             ))}
           </div>
 
           {projects.length === 0 && (
-            <p className="mt-10 text-center text-navy-500">
-              No projects in this category yet — check back soon.
-            </p>
+            <p className="mt-10 text-center text-navy-500">{portfolio.empty}</p>
           )}
         </div>
       </section>

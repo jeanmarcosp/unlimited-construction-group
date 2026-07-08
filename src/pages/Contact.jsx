@@ -2,41 +2,41 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import ContactForm from '../components/ContactForm'
 import { business } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function Contact() {
+  const { t } = useLang()
+  const c = t.contact
+
   const details = [
     {
       icon: Phone,
-      label: 'Phone',
+      label: c.phone,
       value: business.phone,
       href: business.phoneHref,
     },
     {
       icon: Mail,
-      label: 'Email',
+      label: c.email,
       value: business.email,
       href: business.emailHref,
     },
     {
       icon: MapPin,
-      label: 'Office',
+      label: c.office,
       value: `${business.address.line1}, ${business.address.city}, ${business.address.state} ${business.address.zip}`,
       href: business.mapUrl,
     },
     {
       icon: Clock,
-      label: 'Hours',
-      value: 'Mon–Fri, 8:00 AM – 5:00 PM', // placeholder — confirm actual hours
+      label: c.hours,
+      value: c.hoursValue,
     },
   ]
 
   return (
     <>
-      <PageHeader
-        eyebrow="Contact Us"
-        title="Let's build something great together"
-        subtitle="Reach out for a quote or to discuss your project. We respond quickly and are happy to answer any questions."
-      />
+      <PageHeader eyebrow={c.eyebrow} title={c.title} subtitle={c.subtitle} />
 
       <section className="section">
         <div className="container grid grid-cols-1 gap-12 lg:grid-cols-2">

@@ -2,9 +2,14 @@ import { Target } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import Placeholder from '../components/Placeholder'
 import CTASection from '../components/CTASection'
-import { about, business } from '../data/content'
+import { business } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function About() {
+  const { t } = useLang()
+  const about = t.about
+  const years = 2026 - business.established
+
   return (
     <>
       <PageHeader eyebrow={about.eyebrow} title={about.heading} subtitle={about.lead} />
@@ -37,14 +42,14 @@ export default function About() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-widest text-accent-400">
-                    Our Mission
+                    {about.missionLabel}
                   </p>
                   <p className="mt-2 text-2xl font-extrabold leading-snug">{about.mission}</p>
                 </div>
               </div>
             </div>
           </div>
-          <Placeholder label="Company / project photo" aspect="aspect-[4/5]" />
+          <Placeholder label={about.companyPhoto} aspect="aspect-[4/5]" />
         </div>
       </section>
 
@@ -65,10 +70,8 @@ export default function About() {
         />
         <div className="container relative">
           <div className="max-w-2xl">
-            <span className="eyebrow text-accent-400">Why Clients Choose Us</span>
-            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">
-              Built on trust, delivered with expertise
-            </h2>
+            <span className="eyebrow text-accent-400">{about.valuesEyebrow}</span>
+            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">{about.valuesHeading}</h2>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {about.values.map((v) => (
@@ -88,23 +91,21 @@ export default function About() {
       <section className="border-y border-navy-100 bg-white">
         <div className="container grid grid-cols-1 gap-8 py-12 text-center sm:grid-cols-3">
           <div>
-            <p className="text-4xl font-extrabold text-navy-900">
-              {2026 - business.established}+
-            </p>
+            <p className="text-4xl font-extrabold text-navy-900">{years}+</p>
             <p className="mt-1 text-sm font-medium uppercase tracking-widest text-navy-500">
-              Years in Business
+              {about.credentials.years}
             </p>
           </div>
           <div>
             <p className="text-4xl font-extrabold text-navy-900">{business.license}</p>
             <p className="mt-1 text-sm font-medium uppercase tracking-widest text-navy-500">
-              State License
+              {about.credentials.license}
             </p>
           </div>
           <div>
-            <p className="text-4xl font-extrabold text-navy-900">South FL</p>
+            <p className="text-4xl font-extrabold text-navy-900">{about.credentials.areaValue}</p>
             <p className="mt-1 text-sm font-medium uppercase tracking-widest text-navy-500">
-              Service Area
+              {about.credentials.area}
             </p>
           </div>
         </div>

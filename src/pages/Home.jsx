@@ -6,9 +6,12 @@ import ServicesGrid from '../components/ServicesGrid'
 import ProcessSteps from '../components/ProcessSteps'
 import CTASection from '../components/CTASection'
 import Placeholder from '../components/Placeholder'
-import { about } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function Home() {
+  const { t } = useLang()
+  const about = t.about
+
   return (
     <>
       <Hero />
@@ -18,7 +21,7 @@ export default function Home() {
       {/* About teaser */}
       <section className="section bg-navy-50">
         <div className="container grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          <Placeholder label="Team / job site photo" aspect="aspect-[4/3]" />
+          <Placeholder label={about.teaserPhoto} aspect="aspect-[4/3]" />
           <div>
             <span className="eyebrow">{about.eyebrow}</span>
             <h2 className="mt-4 text-3xl font-extrabold text-navy-900 sm:text-4xl">
@@ -39,7 +42,7 @@ export default function Home() {
               to="/about"
               className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-navy-900 hover:text-accent-600"
             >
-              Learn more about us
+              {about.learnMore}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

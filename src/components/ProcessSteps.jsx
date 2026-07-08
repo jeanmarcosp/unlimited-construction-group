@@ -1,6 +1,9 @@
-import { process } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function ProcessSteps() {
+  const { t } = useLang()
+  const process = t.process
+
   return (
     <section className="section bg-navy-950 text-white">
       <div className="container">

@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin } from 'lucide-react'
-import { business, navLinks, coreServices } from '../data/content'
+import { business } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function Footer() {
+  const { t } = useLang()
   const year = 2026
 
   return (
@@ -14,16 +16,18 @@ export default function Footer() {
             alt={`${business.name} logo`}
             className="h-16 w-auto rounded-md bg-white/95 p-2"
           />
-          <p className="mt-4 max-w-xs text-sm text-navy-300">{business.tagline}</p>
+          <p className="mt-4 max-w-xs text-sm text-navy-300">{t.tagline}</p>
           <p className="mt-3 text-xs text-navy-400">
             License {business.license} · Est. {business.established}
           </p>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-widest text-white">Explore</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-widest text-white">
+            {t.footer.explore}
+          </h4>
           <ul className="mt-4 space-y-2 text-sm">
-            {navLinks.map((link) => (
+            {t.nav.map((link) => (
               <li key={link.to}>
                 <Link to={link.to} className="text-navy-300 transition-colors hover:text-white">
                   {link.label}
@@ -34,9 +38,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-widest text-white">Services</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-widest text-white">
+            {t.footer.services}
+          </h4>
           <ul className="mt-4 space-y-2 text-sm">
-            {coreServices.map((s) => (
+            {t.coreServices.map((s) => (
               <li key={s.slug}>
                 <Link to="/services" className="text-navy-300 transition-colors hover:text-white">
                   {s.title}
@@ -47,7 +53,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-widest text-white">Contact</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-widest text-white">
+            {t.footer.contact}
+          </h4>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" />
@@ -76,10 +84,10 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container flex flex-col items-center justify-between gap-2 py-6 text-xs text-navy-400 sm:flex-row">
           <p>
-            © {year} {business.name}. All rights reserved.
+            © {year} {business.name}. {t.footer.rightsReserved}
           </p>
           <p>
-            Licensed General Contractor · {business.license} · {business.serviceArea}
+            {t.footer.licensedGC} · {business.license} · {t.serviceArea}
           </p>
         </div>
       </div>

@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Phone } from 'lucide-react'
 import { business } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function CTASection() {
+  const { t } = useLang()
+  const cta = t.cta
+
   return (
     <section className="section">
       <div className="container">
@@ -17,17 +21,12 @@ export default function CTASection() {
           />
           <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
             <div className="max-w-lg">
-              <h2 className="text-3xl font-extrabold sm:text-4xl">
-                Ready to start your project?
-              </h2>
-              <p className="mt-3 text-navy-900/80">
-                Tell us about your vision and we'll help bring it to life — on time, on budget,
-                and built to last.
-              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">{cta.heading}</h2>
+              <p className="mt-3 text-navy-900/80">{cta.body}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link to="/contact" className="btn bg-navy-950 text-white hover:bg-navy-800">
-                Request a Quote
+                {cta.requestQuote}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a

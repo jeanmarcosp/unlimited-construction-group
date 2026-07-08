@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { hero, business } from '../data/content'
+import { business } from '../data/content'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function Hero() {
+  const { t } = useLang()
+  const hero = t.hero
+  const years = 2026 - business.established
+
   return (
     <section className="relative overflow-hidden bg-navy-950 text-white">
       {/* Blueprint texture */}
@@ -19,9 +24,7 @@ export default function Hero() {
 
       <div className="container relative grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
         <div>
-          <span className="eyebrow text-accent-400">
-            Est. {business.established} · {business.serviceArea}
-          </span>
+          <span className="eyebrow text-accent-400">{hero.eyebrow}</span>
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
             {hero.headline}
           </h1>
@@ -37,9 +40,7 @@ export default function Hero() {
             </Link>
           </div>
 
-          <p className="mt-6 text-sm text-navy-300">
-            Licensed · Bonded · Insured — License {business.license}
-          </p>
+          <p className="mt-6 text-sm text-navy-300">{hero.licensedNote}</p>
         </div>
 
         {/* Hero image placeholder */}
@@ -53,14 +54,14 @@ export default function Hero() {
               }}
             >
               <span className="text-xs font-medium uppercase tracking-widest text-navy-400">
-                Featured project photo
+                {hero.featuredPhoto}
               </span>
             </div>
           </div>
           <div className="absolute -bottom-5 -left-5 hidden rounded-xl bg-white p-4 shadow-xl sm:block">
-            <p className="text-3xl font-extrabold text-navy-900">25+</p>
+            <p className="text-3xl font-extrabold text-navy-900">{years}+</p>
             <p className="text-xs font-medium uppercase tracking-widest text-navy-500">
-              Years Building
+              {hero.yearsBuilding}
             </p>
           </div>
         </div>
