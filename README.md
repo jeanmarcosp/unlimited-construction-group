@@ -4,8 +4,8 @@ Modern marketing site for Unlimited Construction Group, a licensed general contr
 Miami, FL (est. 2000, license CGC1524964).
 
 **Phase 1 scope:** a responsive visual redesign shell — Home, Services, About, and Contact
-pages built from the business's real content with cleaned-up copy. The contact form is a
-styled UI placeholder (not yet wired to a backend). Real project photography drops in
+pages built from the business's real content with cleaned-up copy.
+Real project photography drops in
 later; image placeholders mark where.
 
 ## Tech Stack
@@ -33,6 +33,16 @@ src/
 └── pages/              # Home, Services, About, Contact
 public/images/          # Logo + image assets (swap placeholders here)
 ```
+
+## Contact Form
+
+The contact form sends submissions through [Web3Forms](https://web3forms.com) — no backend
+needed. Messages are emailed to whichever address the access key was created for.
+
+1. Create an access key at web3forms.com using the inbox that should receive inquiries.
+2. Copy `.env.example` to `.env.local` and set `VITE_WEB3FORMS_ACCESS_KEY`.
+3. Add the same variable in the hosting provider's environment settings (Netlify/Vercel)
+   and redeploy — Vite bakes it in at build time.
 
 ## Editing Content
 
